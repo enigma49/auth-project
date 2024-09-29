@@ -13,7 +13,6 @@ function App() {
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const token = queryParams.get('token');
-    console.log(token);
     if (token) {
       authService.setToken(token);
       // Optionally, you can redirect to remove the token from the URL

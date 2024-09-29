@@ -34,7 +34,7 @@ class AuthService {
   private baseUrl: string;
 
   constructor() {
-    this.baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:3000/';
+    this.baseUrl = 'https://auth-project-7l1f.onrender.com';
   }
 
   async signup(userData: SignupData): Promise<AuthResult> {
