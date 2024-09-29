@@ -42,7 +42,7 @@ export class AuthController {
   async googleCallback(@Req() req, @Res() res) {
     const response = await this.authService.login(req.user.id);
     res.redirect(
-      process.env.FRONTEND_URL + 'welcome?token=' + response.access_token,
+      process.env.FRONTEND_URL + '/welcome?token=' + response.access_token,
     );
     return response;
   }
