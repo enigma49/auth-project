@@ -8,7 +8,7 @@ async function bootstrap() {
 
   // Enable CORS
   app.enableCors({
-    origin: 'http://localhost:4000', // Replace with your frontend URL
+    origin: 'https://auth-project-frontend-hefk.onrender.com', // Replace with your frontend URL
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     credentials: true,
   });
