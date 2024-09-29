@@ -13,6 +13,7 @@ import { JwtStrategy } from './authenticators/jwt.authenticators';
 import { RefreshStrategy } from './authenticators/refresh.authenticators';
 import googleOauthConfig from './config/google-oauth.config';
 import { GoogleOauthStrategy } from './authenticators/google.oauth.authenticators';
+import { CustomLogger } from 'src/logger/logger.service';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { GoogleOauthStrategy } from './authenticators/google.oauth.authenticator
     JwtStrategy,
     RefreshStrategy,
     GoogleOauthStrategy,
+    CustomLogger,
   ],
 })
 export class AuthModule {}

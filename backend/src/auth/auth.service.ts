@@ -5,6 +5,7 @@ import { UserService } from 'src/user/user.service';
 import refreshJwtConfig from './config/refresh.jwt.config';
 import { ConfigType } from '@nestjs/config';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
+import { CustomLogger } from 'src/logger/logger.service';
 
 @Injectable()
 export class AuthService {
@@ -13,12 +14,19 @@ export class AuthService {
     private readonly jwtService: JwtService,
     @Inject(refreshJwtConfig.KEY)
     private readonly refreshTokenConfig: ConfigType<typeof refreshJwtConfig>,
+    private readonly logger: CustomLogger,
   ) {}
   async validateUser(email: string, password: string) {
     const user = await this.userService.findByEmail(email);
-    if (!user) throw new UnauthorizedException('User not found');
+    if (!user) {
+      this.logger.error('User not found', email);
+      throw new UnauthorizedException('User not found');
+    }
     const isPasswordValid = await compare(password, user.password);
-    if (!isPasswordValid) throw new UnauthorizedException('Invalid password');
+    if (!isPasswordValid) {
+      this.logger.error('Invalid password', email);
+      throw new UnauthorizedException('Invalid password');
+    }
     return { id: user._id, username: user.username, email: user.email };
   }
 

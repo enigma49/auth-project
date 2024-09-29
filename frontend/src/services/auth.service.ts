@@ -75,7 +75,6 @@ class AuthService {
     try {
       window.location.href = `${this.baseUrl}/auth/google/login`;
     } catch (error) {
-        console.error(error);
       throw new Error('Login failed');
     }
   }
